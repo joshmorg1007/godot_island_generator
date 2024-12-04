@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://i8o1ve0et8yp"]
+
+[ext_resource type="Script" path="res://scripts/UI/h_val_slider.gd" id="1_bkqh2"]
+
+[node name="HValSlider" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 226.0
+offset_bottom = 40.0
+script = ExtResource("1_bkqh2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Val" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.66
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "[right] 0 [/right]"
+scroll_active = false
+
+[node name="Slider" type="HSlider" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 0.01
+step = 0.01
+value = 0.01
+exp_edit = true
+
+[connection signal="value_changed" from="HBoxContainer/Slider" to="." method="_on_slider_value_changed"]

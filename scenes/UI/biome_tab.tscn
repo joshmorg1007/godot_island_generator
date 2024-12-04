@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=3 uid="uid://dru6tf8scaow4"]
+
+[ext_resource type="Script" path="res://scripts/UI/biome_tab.gd" id="1_pl4lj"]
+
+[node name="BiomeTab" type="HBoxContainer"]
+offset_right = 1152.0
+offset_bottom = 66.0
+script = ExtResource("1_pl4lj")
+
+[node name="NoiseRanges" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="NoiseRanges"]
+layout_mode = 2
+placeholder_text = "New Biome"
+
+[node name="ElevationTab" type="HBoxContainer" parent="NoiseRanges"]
+layout_mode = 2
+
+[node name="ElevationMinLabel" type="Label" parent="NoiseRanges/ElevationTab"]
+layout_mode = 2
+text = "Elevation Min"
+
+[node name="ElevationMinSpinBox" type="SpinBox" parent="NoiseRanges/ElevationTab"]
+layout_mode = 2
+min_value = -1.0
+max_value = 1.0
+step = 0.001
+
+[node name="ElevationMaxLabel" type="Label" parent="NoiseRanges/ElevationTab"]
+layout_mode = 2
+text = "Elevation Max"
+
+[node name="ElevationMaxSpinBox" type="SpinBox" parent="NoiseRanges/ElevationTab"]
+layout_mode = 2
+min_value = -1.0
+max_value = 1.0
+step = 0.001
+
+[node name="HumidityTab" type="HBoxContainer" parent="NoiseRanges"]
+layout_mode = 2
+
+[node name="HumidityMinLabel" type="Label" parent="NoiseRanges/HumidityTab"]
+layout_mode = 2
+text = "Humidity Min"
+
+[node name="HumidityMinSpinBox" type="SpinBox" parent="NoiseRanges/HumidityTab"]
+layout_mode = 2
+min_value = -1.0
+max_value = 1.0
+step = 0.001
+
+[node name="HumidityMaxLabel" type="Label" parent="NoiseRanges/HumidityTab"]
+layout_mode = 2
+text = "Humidity Max"
+
+[node name="HumidityMaxSpinBox" type="SpinBox" parent="NoiseRanges/HumidityTab"]
+layout_mode = 2
+min_value = -1.0
+max_value = 1.0
+step = 0.001
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "X"
+
+[connection signal="pressed" from="VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

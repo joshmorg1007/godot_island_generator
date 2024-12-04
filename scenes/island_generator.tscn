@@ -1,0 +1,534 @@
+[gd_scene load_steps=6 format=3 uid="uid://bolaoyonneaba"]
+
+[ext_resource type="Script" path="res://scripts/IslandGenerator.gd" id="1_h4rpn"]
+[ext_resource type="PackedScene" uid="uid://b6n5lj1vve0ac" path="res://scenes/UI/line_edit_number.tscn" id="2_78k7p"]
+[ext_resource type="PackedScene" uid="uid://dru6tf8scaow4" path="res://scenes/UI/biome_tab.tscn" id="3_qqtp2"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_mlxmr"]
+pressed = true
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_cpoyy"]
+events = [SubResource("InputEventKey_mlxmr")]
+
+[node name="IslandGenerator" type="Node2D"]
+position = Vector2(623, 372)
+script = ExtResource("1_h4rpn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-46, -47)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TabContainer" type="TabContainer" parent="HUD"]
+custom_minimum_size = Vector2(464, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 350.0
+offset_bottom = -33.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="NoiseSettings" type="VBoxContainer" parent="HUD/TabContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 0
+
+[node name="General Label" type="Label" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.0588235, 0.00784314, 1)
+text = "General"
+
+[node name="NoiseTypeBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="NoiseTypeLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/NoiseTypeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Noise Type: "
+scroll_active = false
+
+[node name="NoiseTypeOption" type="OptionButton" parent="HUD/TabContainer/NoiseSettings/NoiseTypeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 6
+popup/item_0/text = "Simplex"
+popup/item_1/text = "SimplexSmooth"
+popup/item_1/id = 1
+popup/item_2/text = "Cellular"
+popup/item_2/id = 2
+popup/item_3/text = "Perlin"
+popup/item_3/id = 3
+popup/item_4/text = "Calue Cubic"
+popup/item_4/id = 4
+popup/item_5/text = "Value"
+popup/item_5/id = 5
+
+[node name="SizeBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="SizeLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/SizeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+text = "Size:"
+scroll_active = false
+
+[node name="XLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/SizeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.61
+text = "X:"
+scroll_active = false
+
+[node name="XInput" parent="HUD/TabContainer/NoiseSettings/SizeBox" instance=ExtResource("2_78k7p")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "512"
+placeholder_text = "0"
+
+[node name="YLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/SizeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.6
+text = "Y: "
+
+[node name="YInput" parent="HUD/TabContainer/NoiseSettings/SizeBox" instance=ExtResource("2_78k7p")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "512"
+placeholder_text = "0"
+
+[node name="FrequencyBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="FrequencytLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/FrequencyBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.88
+bbcode_enabled = true
+text = "Frequency: "
+fit_content = true
+scroll_active = false
+
+[node name="FrequencySpinbox" type="SpinBox" parent="HUD/TabContainer/NoiseSettings/FrequencyBox"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 0.01
+
+[node name="SeedBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="SeedLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/SeedBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "Seed: "
+fit_content = true
+scroll_active = false
+
+[node name="SeedInput" parent="HUD/TabContainer/NoiseSettings/SeedBox" instance=ExtResource("2_78k7p")]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "seed"
+
+[node name="Fractal" type="Label" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.0588235, 0.00784314, 1)
+text = "Fractal"
+
+[node name="FractalTypeBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="FractalTypeLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/FractalTypeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fractal Type: "
+scroll_active = false
+
+[node name="FractalTypeOption" type="OptionButton" parent="HUD/TabContainer/NoiseSettings/FractalTypeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 1
+item_count = 4
+popup/item_0/text = "None"
+popup/item_1/text = "FBM"
+popup/item_1/id = 1
+popup/item_2/text = "Ridged"
+popup/item_2/id = 2
+popup/item_3/text = "Ping Pong"
+popup/item_3/id = 3
+
+[node name="FractalOctavesBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="FractalOctavesLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/FractalOctavesBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.88
+bbcode_enabled = true
+text = "Fractal Octaves: "
+fit_content = true
+scroll_active = false
+
+[node name="FractalOctavesSpinBox" type="SpinBox" parent="HUD/TabContainer/NoiseSettings/FractalOctavesBox"]
+layout_mode = 2
+value = 5.0
+rounded = true
+
+[node name="FractalLacunarityBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="FractalLacunarityLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/FractalLacunarityBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.88
+bbcode_enabled = true
+text = "Fractal Lacunarity: "
+fit_content = true
+scroll_active = false
+
+[node name="FractalLacunaritySpinBox" type="SpinBox" parent="HUD/TabContainer/NoiseSettings/FractalLacunarityBox"]
+layout_mode = 2
+step = 0.01
+value = 2.0
+
+[node name="FractalGainBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="FractalGainLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/FractalGainBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.88
+bbcode_enabled = true
+text = "Fractal Gain: "
+fit_content = true
+scroll_active = false
+
+[node name="FractalGainSpinBox" type="SpinBox" parent="HUD/TabContainer/NoiseSettings/FractalGainBox"]
+layout_mode = 2
+step = 0.01
+value = 0.5
+
+[node name="FractalWeightedStrBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="FractalWeightedStrLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/FractalWeightedStrBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.88
+bbcode_enabled = true
+text = "Fractal Weighted Strength: "
+fit_content = true
+scroll_active = false
+
+[node name="FWSSpinBox" type="SpinBox" parent="HUD/TabContainer/NoiseSettings/FractalWeightedStrBox"]
+layout_mode = 2
+step = 0.01
+
+[node name="FractalPingPongBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="FractalPingPongLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/FractalPingPongBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.88
+bbcode_enabled = true
+text = "Fractal Ping Pong: "
+fit_content = true
+scroll_active = false
+
+[node name="FractalPingPongSpinBox" type="SpinBox" parent="HUD/TabContainer/NoiseSettings/FractalPingPongBox"]
+layout_mode = 2
+step = 0.01
+value = 2.0
+
+[node name="Cellular" type="Label" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.0588235, 0.00784314, 1)
+text = "Cellular"
+
+[node name="CellularDistanceBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CellularDistanceLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/CellularDistanceBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cellular Distance: "
+scroll_active = false
+
+[node name="CellularDistanceOption" type="OptionButton" parent="HUD/TabContainer/NoiseSettings/CellularDistanceBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 4
+popup/item_0/text = "Euclidean"
+popup/item_1/text = "Euclidean Squared"
+popup/item_1/id = 1
+popup/item_2/text = "Manhattan"
+popup/item_2/id = 2
+popup/item_3/text = "Hybrid"
+popup/item_3/id = 3
+
+[node name="CellularReturnTypeBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CellularReturnTypeLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/CellularReturnTypeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cellular Distance: "
+scroll_active = false
+
+[node name="CellularReturnTypeOption" type="OptionButton" parent="HUD/TabContainer/NoiseSettings/CellularReturnTypeBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+selected = 0
+item_count = 7
+popup/item_0/text = "Cell Value"
+popup/item_1/text = "Distance"
+popup/item_1/id = 1
+popup/item_2/text = "Distance 2"
+popup/item_2/id = 2
+popup/item_3/text = "Distance 2 Add"
+popup/item_3/id = 3
+popup/item_4/text = "Distance 2 Sub"
+popup/item_4/id = 4
+popup/item_5/text = "Distance 2 Mul"
+popup/item_5/id = 5
+popup/item_6/text = "Distance 2 Div"
+popup/item_6/id = 6
+
+[node name="CellularJitterBox" type="HBoxContainer" parent="HUD/TabContainer/NoiseSettings"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CellularJitterLabel" type="RichTextLabel" parent="HUD/TabContainer/NoiseSettings/CellularJitterBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.88
+bbcode_enabled = true
+text = "Cellular Jitter: "
+fit_content = true
+scroll_active = false
+
+[node name="CellularJitterSpinBox" type="SpinBox" parent="HUD/TabContainer/NoiseSettings/CellularJitterBox"]
+layout_mode = 2
+step = 0.01
+value = 1.0
+
+[node name="Domain Warp" type="Label" parent="HUD/TabContainer/NoiseSettings"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.0588235, 0.00784314, 1)
+text = "Domain Warp"
+
+[node name="Biomes" type="VBoxContainer" parent="HUD/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HUD/TabContainer/Biomes"]
+custom_minimum_size = Vector2(70, 100)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+horizontal_scroll_mode = 0
+
+[node name="BiomesContainer" type="VBoxContainer" parent="HUD/TabContainer/Biomes/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BiomeTabSea" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer" instance=ExtResource("3_qqtp2")]
+layout_mode = 2
+
+[node name="ElevationMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabSea/NoiseRanges/ElevationTab" index="1"]
+value = -1.0
+
+[node name="ElevationMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabSea/NoiseRanges/ElevationTab" index="3"]
+value = -0.1
+
+[node name="HumidityMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabSea/NoiseRanges/HumidityTab" index="1"]
+value = -1.0
+
+[node name="HumidityMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabSea/NoiseRanges/HumidityTab" index="3"]
+value = 1.0
+
+[node name="ColorPickerButton" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabSea/VBoxContainer" index="0"]
+color = Color(0.0410383, 0.232057, 0.604014, 1)
+
+[node name="BiomeTabCoast" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer" instance=ExtResource("3_qqtp2")]
+layout_mode = 2
+
+[node name="ElevationMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabCoast/NoiseRanges/ElevationTab" index="1"]
+page = 0.9
+value = -0.1
+
+[node name="HumidityMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabCoast/NoiseRanges/HumidityTab" index="1"]
+value = -1.0
+
+[node name="HumidityMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabCoast/NoiseRanges/HumidityTab" index="3"]
+value = 1.0
+
+[node name="ColorPickerButton" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabCoast/VBoxContainer" index="0"]
+color = Color(0.305853, 0.53647, 0.980457, 1)
+
+[node name="BiomeTab" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer" instance=ExtResource("3_qqtp2")]
+layout_mode = 2
+
+[node name="ElevationMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab/NoiseRanges/ElevationTab" index="3"]
+value = 0.1
+
+[node name="HumidityMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab/NoiseRanges/HumidityTab" index="1"]
+value = -1.0
+
+[node name="HumidityMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab/NoiseRanges/HumidityTab" index="3"]
+value = 1.0
+
+[node name="ColorPickerButton" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab/VBoxContainer" index="0"]
+color = Color(0.768627, 0.647059, 0.25098, 1)
+
+[node name="BiomeTab2" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer" instance=ExtResource("3_qqtp2")]
+layout_mode = 2
+
+[node name="ElevationMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab2/NoiseRanges/ElevationTab" index="1"]
+value = 0.1
+
+[node name="ElevationMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab2/NoiseRanges/ElevationTab" index="3"]
+value = 0.4
+
+[node name="HumidityMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab2/NoiseRanges/HumidityTab" index="1"]
+value = -1.0
+
+[node name="HumidityMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab2/NoiseRanges/HumidityTab" index="3"]
+value = 1.0
+
+[node name="ColorPickerButton" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab2/VBoxContainer" index="0"]
+color = Color(0.313726, 0.721569, 0.262745, 1)
+
+[node name="BiomeTab3" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer" instance=ExtResource("3_qqtp2")]
+layout_mode = 2
+
+[node name="ElevationMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab3/NoiseRanges/ElevationTab" index="1"]
+value = 0.4
+
+[node name="ElevationMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab3/NoiseRanges/ElevationTab" index="3"]
+value = 0.7
+
+[node name="HumidityMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab3/NoiseRanges/HumidityTab" index="1"]
+value = -1.0
+
+[node name="HumidityMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab3/NoiseRanges/HumidityTab" index="3"]
+value = 1.0
+
+[node name="ColorPickerButton" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab3/VBoxContainer" index="0"]
+color = Color(0.168627, 0.262745, 0.14902, 1)
+
+[node name="BiomeTab4" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer" instance=ExtResource("3_qqtp2")]
+layout_mode = 2
+
+[node name="ElevationMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab4/NoiseRanges/ElevationTab" index="1"]
+value = 0.7
+
+[node name="ElevationMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab4/NoiseRanges/ElevationTab" index="3"]
+value = 1.0
+
+[node name="HumidityMinSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab4/NoiseRanges/HumidityTab" index="1"]
+value = -1.0
+
+[node name="HumidityMaxSpinBox" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab4/NoiseRanges/HumidityTab" index="3"]
+value = 1.0
+
+[node name="ColorPickerButton" parent="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab4/VBoxContainer" index="0"]
+color = Color(0.364706, 0.364706, 0.364706, 1)
+
+[node name="AddBiomeButton" type="Button" parent="HUD/TabContainer/Biomes"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Add Biome"
+
+[node name="GenerateButton" type="Button" parent="HUD"]
+custom_minimum_size = Vector2(464, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 350.0
+grow_vertical = 0
+size_flags_vertical = 0
+shortcut = SubResource("Shortcut_cpoyy")
+text = "Generate"
+
+[node name="NoisePreviewTile" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="ConfirmElevationButton" type="Button" parent="HUD/NoisePreviewTile"]
+visible = false
+layout_mode = 0
+offset_left = -260.0
+offset_top = 317.0
+offset_right = -114.0
+offset_bottom = 348.0
+text = "Confirm Elevation"
+
+[node name="ConfirmHumidityButton" type="Button" parent="HUD/NoisePreviewTile"]
+visible = false
+layout_mode = 0
+offset_left = -107.0
+offset_top = 317.0
+offset_right = 35.0
+offset_bottom = 348.0
+text = "Confirm Humidty"
+
+[node name="TextureRect" type="TextureRect" parent="HUD/NoisePreviewTile"]
+visible = false
+layout_mode = 0
+offset_left = -262.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 305.0
+
+[connection signal="pressed" from="HUD/TabContainer/Biomes/AddBiomeButton" to="." method="_on_add_biome_button_pressed"]
+[connection signal="pressed" from="HUD/GenerateButton" to="." method="_on_generate_button_pressed"]
+[connection signal="pressed" from="HUD/NoisePreviewTile/ConfirmElevationButton" to="." method="_on_confirm_elevation_button_pressed"]
+[connection signal="pressed" from="HUD/NoisePreviewTile/ConfirmHumidityButton" to="." method="_on_confirm_humidity_button_pressed"]
+
+[editable path="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabSea"]
+[editable path="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTabCoast"]
+[editable path="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab"]
+[editable path="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab2"]
+[editable path="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab3"]
+[editable path="HUD/TabContainer/Biomes/ScrollContainer/BiomesContainer/BiomeTab4"]
